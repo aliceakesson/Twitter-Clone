@@ -36,6 +36,7 @@ main {
     margin-right: 10px;
     display: flex;
     align-items: top;
+    position: relative;
 }
 
 #items div:first-child i {
@@ -59,6 +60,23 @@ i {
     padding-bottom: 0;
     box-sizing: border-box;
 }
+
+#profile {
+    vertical-align: bottom;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+#profile img {
+    border-radius: 50px;
+    width: 45px;
+}
+
+
+/* -------------------------- */
 
 h1 {
     font-size: 20px;
