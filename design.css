@@ -24,7 +24,8 @@ main {
 
 
 #main-section {
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     width: 600px;
     background: var(--darkest);
     border: var(--grey) solid 1px;
@@ -41,7 +42,9 @@ main {
     margin-right: 10px;
     display: flex;
     align-items: top;
-    position: relative;
+    position: sticky;
+    top: 0;
+    height: 100vh; 
 }
 
 #items div:first-child i {

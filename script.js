@@ -12,6 +12,7 @@ postButton.addEventListener('click', e => {
     const text = document.querySelector('#create-post textarea').value;
     if(text.length > 0) {
         newPost(currentUser, text);
+        document.querySelector('#create-post textarea').value = '';
     }
 });
 
