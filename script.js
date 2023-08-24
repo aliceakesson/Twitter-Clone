@@ -30,6 +30,7 @@ function run() {
 
 newPost('alice', 'This is a test post.');
 newPost('alice', 'Anotha one');
+newPost('alice', 'hi');
 
 function newPost(username, context) {
     var clone = tweet.cloneNode(true);

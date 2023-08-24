@@ -9,6 +9,31 @@
     --pink: rgb(233, 77, 103)
 }
 
+/*#region Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 17.5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2c2c2c; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #4f4f4f; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #5f5f5f; 
+  }
+
+
+/*#endregion */
+
 body {
     background: var(--bg);
     margin: 0 auto;
