@@ -1,11 +1,22 @@
 const textareaPost = document.getElementById('textareaPost');
 
+var currentUser = 'alice';
+
 var names = {'alice': 'alice åkesson'};
 var profiles = {'alice': 'profile.png'};
 
 const tweet = document.getElementById('tweet-replica');
 
-const lightGrey = getComputedStyle(document.documentElement).getPropertyValue('--light-grey')
+const postButton = document.getElementById('postButton');
+postButton.addEventListener('click', e => {
+    const text = document.querySelector('#create-post textarea').value;
+    if(text.length > 0) {
+        newPost(currentUser, text);
+    }
+});
+
+const lightGrey = getComputedStyle(document.documentElement).getPropertyValue('--light-grey');
+const grey = getComputedStyle(document.documentElement).getPropertyValue('--grey')
 const pink = getComputedStyle(document.documentElement).getPropertyValue('--pink');
 
 // setInterval(run, 1000);
@@ -46,7 +57,7 @@ function newPost(username, context) {
         } else {
             heart.classList.remove('fa-solid');
             heart.classList.add('fa-regular');
-            likeDiv.style.color = lightGrey;
+            likeDiv.style.color = grey;
 
             const likeP = likeDiv.querySelector('p');
             const amountOfLikes = parseInt(likeP.innerHTML);

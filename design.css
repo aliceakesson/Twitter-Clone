@@ -107,7 +107,7 @@ h1 {
     display: inline-block;
 }
 
-/* ------------------------------------------------------------ */
+/*#region Create Post */
 
 #create-post {
     padding-top: 15px;
@@ -131,9 +131,13 @@ h1 {
     background: none;
     border: none; 
     resize: none;
-    color: var(--grey);
+    color: var(--light-grey);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 22px;
+    width: 100%; 
+}
+#create-post textarea::placeholder {
+    color: var(--grey);
 }
 #create-post textarea:focus {
     outline:none; 
@@ -146,6 +150,40 @@ h1 {
     padding: 15px 0;
     font-size: 18px;
 }
+
+#create-post-right {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#create-post-bottom {
+    position: relative;
+    display: flex;
+    border-top: 1px solid var(--dark-grey);
+    padding-top: 15px;
+    justify-content: space-between;
+}
+#create-post-bottom > div:first-child {
+    flex: 0;
+}
+#create-post-bottom i {
+    margin-top: 50%;
+}
+#create-post-bottom > div:last-child {
+    flex: 0;
+}
+
+#create-post-bottom > div:last-child button {
+    color: white;
+    background: var(--light-blue);
+    padding: 10px 15px;
+    border-radius:20px; 
+    border:none; 
+    font-weight: bold;
+}
+
+/*#endregion */
 
 #showtweets {
     display: block;
