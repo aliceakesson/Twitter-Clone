@@ -1,11 +1,17 @@
+tweetIDCount = 1; 
+
 const textareaPost = document.getElementById('textareaPost');
 
 var currentUser = 'alice';
 
-var names = {'alice': 'alice åkesson'};
-var profiles = {'alice': 'profile.png'};
+var users = {
+    'alice': {name: 'lallice', profile: 'profile.png'}
+};
+var tweets = [
 
-const tweet = document.getElementById('tweet-replica');
+];
+
+const tweetReplica = document.getElementById('tweet-replica');
 
 const postButton = document.getElementById('postButton');
 postButton.addEventListener('click', e => {
@@ -28,25 +34,25 @@ function run() {
     }
 }
 
-newPost('alice', 'This is a test post.');
-newPost('alice', 'Anotha one');
-newPost('alice', 'hi');
+newPost(currentUser, 'This is a test post.');
+newPost(currentUser, 'Anotha one');
+newPost(currentUser, 'hi');
 
-function newPost(username, context) {
-    var clone = tweet.cloneNode(true);
+function newPost(user, text) {
+    var clone = tweetReplica.cloneNode(true);
 
     document.getElementById('tweets').prepend(clone);
     clone.style.display = 'flex';
 
-    clone.querySelector('.tweet-left img').src = profiles[username];
-    clone.querySelector('.tweet-name').innerHTML = names[username];
-    clone.querySelector('.tweet-username').innerHTML = "@" + username;
-    clone.querySelector('.tweet-post').innerHTML = context;
+    clone.querySelector('.tweet-left img').src = users[user].profile;
+    clone.querySelector('.tweet-name').innerHTML = users[user].name;
+    clone.querySelector('.tweet-username').innerHTML = "@" + user;
+    clone.querySelector('.tweet-post').innerHTML = text;
 
     const likeDiv = clone.querySelector('.tweet-like');
     likeDiv.addEventListener('click', e => {
         const heart = likeDiv.querySelector('i');
-        if(heart.classList.contains('fa-regular')) {
+        if(heart.classList.contains('fa-regular')) { // like tweet
             heart.classList.remove('fa-regular');
             heart.classList.add('fa-solid');
             likeDiv.style.color = pink; 
@@ -55,8 +61,17 @@ function newPost(username, context) {
             const amountOfLikes = parseInt(likeP.innerHTML);
             if(amountOfLikes == 0) 
                 likeP.style.visibility = 'visible';
+
             likeP.innerHTML = amountOfLikes + 1;
-        } else {
+            for(var i = 0; i < tweets.length; i++) {
+                if(tweets[i].id == tweetIDCount) {
+                    tweets[i].likes.push(currentUser);
+                    console.log(tweets[i]);
+                    break; 
+                }
+            }
+
+        } else { // dislike tweet 
             heart.classList.remove('fa-solid');
             heart.classList.add('fa-regular');
             likeDiv.style.color = grey;
@@ -65,7 +80,23 @@ function newPost(username, context) {
             const amountOfLikes = parseInt(likeP.innerHTML);
             if(amountOfLikes == 1) 
                 likeP.style.visibility = 'hidden';
+
             likeP.innerHTML = amountOfLikes - 1;
+            for(var i = 0; i < tweets.length; i++) {
+                if(tweets[i].id == tweetIDCount) {
+                    const index = tweets[i].likes.indexOf(currentUser);
+                    tweets[i].likes.splice(index, 1);
+                    console.log(tweets[i]);
+                    break; 
+                }
+            }
+
         }
     });
+
+    const d = new Date();
+
+    const post = {id: tweetIDCount, username: user, time: d.getTime(), 
+        context: text, comments: [], retweets: [], likes: []};
+    tweets.push(post);
 }
