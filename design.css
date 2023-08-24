@@ -145,3 +145,26 @@ h1 {
     padding: 15px 0;
     font-size: 18px;
 }
+
+/* #showtweets {
+    visibility: hidden;
+} */
+
+.tweet {
+    padding: 10px 15px;
+    display: flex;
+}
+.tweet-left {
+    padding-right: 10px;
+}
+.tweet-top-info {
+    display: flex;
+}
+
+.tweet-bottom-info {
+    display: flex;
+}
+
+.tweet-comment, .tweet-retweet, .tweet-like, .tweet-stats, .tweet-share {
+    display: flex;
+}
