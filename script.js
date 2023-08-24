@@ -18,15 +18,17 @@ function run() {
 }
 
 newPost('alice', 'This is a test post.');
+newPost('alice', 'Anotha one');
 
 function newPost(username, context) {
     var clone = tweet.cloneNode(true);
 
-    document.getElementById('tweets').appendChild(clone);
+    document.getElementById('tweets').prepend(clone);
     clone.style.display = 'flex';
 
     clone.querySelector('.tweet-left img').src = profiles[username];
     clone.querySelector('.tweet-name').innerHTML = names[username];
     clone.querySelector('.tweet-username').innerHTML = "@" + username;
+    clone.querySelector('.tweet-post').innerHTML = context;
 }
 
