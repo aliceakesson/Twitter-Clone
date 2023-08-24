@@ -6,6 +6,7 @@
     --darkest: #000;
     --light-blue: #0c72b7; 
     --dark-blue: #06395c;
+    --pink: rgb(233, 77, 103)
 }
 
 body {
@@ -208,6 +209,10 @@ h1 {
 .tweet-comment, .tweet-retweet, .tweet-like, .tweet-stats, .tweet-share {
     display: flex;
     color:  var(--grey);
+    cursor: pointer;
+}
+.tweet-like:hover {
+    color: var(--pink); 
 }
 .tweet-share {
     margin: 0;
