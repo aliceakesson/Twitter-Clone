@@ -1,5 +1,10 @@
 const textareaPost = document.getElementById('textareaPost');
 
+var names = {'alice': 'alice åkesson'};
+var profiles = {'alice': 'profile.png'};
+
+const tweet = document.getElementById('tweet-replica');
+
 const lightGrey = getComputedStyle(document.documentElement).getPropertyValue('--light-grey')
 
 posts = []
@@ -15,6 +20,13 @@ function run() {
 newPost('alice', 'This is a test post.');
 
 function newPost(username, context) {
-    
+    var clone = tweet.cloneNode(true);
+
+    document.getElementById('tweets').appendChild(clone);
+    clone.style.display = 'flex';
+
+    clone.querySelector('.tweet-left img').src = profiles[username];
+    clone.querySelector('.tweet-name').innerHTML = names[username];
+    clone.querySelector('.tweet-username').innerHTML = "@" + username;
 }
 

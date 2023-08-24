@@ -146,9 +146,16 @@ h1 {
     font-size: 18px;
 }
 
-/* #showtweets {
-    visibility: hidden;
-} */
+#showtweets {
+    display: block;
+}
+
+.tweet:not(:last-child) {
+    border-bottom: 1px solid var(--grey);
+}
+#tweet-replica {
+    display: none;
+}
 
 /*#region Tweet */
 .tweet {
