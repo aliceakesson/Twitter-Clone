@@ -206,6 +206,9 @@ h1 {
 .tweet-bottom-info > div {
     flex: 0;
 }
+.tweet-bottom-info p {
+    visibility: hidden;
+}
 .tweet-comment, .tweet-retweet, .tweet-like, .tweet-stats, .tweet-share {
     display: flex;
     color:  var(--grey);
