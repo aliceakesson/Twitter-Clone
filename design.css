@@ -86,7 +86,7 @@ main {
     margin: 0 auto;
 }
 
- #main-header {
+ #main-header, #tweet-header {
     color: var(--light-grey);
     margin: 0 auto;
     padding: 10px 20px;
@@ -291,6 +291,30 @@ h1 {
 .tweet-bottom-info p {
     margin-top: -2px;
     margin-left: 5px;
+}
+
+/*#endregion */
+
+
+
+/*#region Tweet */
+
+#tweet-header {
+    display: none;
+    padding-top: 10px;
+    border-bottom:none !important; 
+}
+
+#tweet-header i {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#tweet-header p {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 5px;
+    margin-left: 20px;
 }
 
 /*#endregion */

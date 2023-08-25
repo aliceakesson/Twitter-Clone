@@ -38,8 +38,11 @@ newPost(currentUser, 'This is a test post.');
 newPost(currentUser, 'Anotha one');
 newPost(currentUser, 'hi');
 
-function showTweet() {
-    console.log('click lcick');
+function showTweet(id) {
+    document.getElementById('main-header').style.display = 'none';
+    document.getElementById('tweet-header').style.display = 'flex';
+    document.getElementById('create-post').style.display = 'none';
+    document.getElementById('tweets').style.display = 'none';
 }
 
 function newPost(user, text) {
@@ -53,7 +56,15 @@ function newPost(user, text) {
     clone.querySelector('.tweet-username').innerHTML = "@" + user;
     clone.querySelector('.tweet-post').innerHTML = text;
 
-    clone.addEventListener('click', showTweet);
+    const d = new Date();
+
+    const post = {id: tweetIDCount, username: user, time: d.getTime(), 
+        context: text, comments: [], retweets: [], likes: []};
+    tweets.push(post);
+
+    clone.addEventListener('click', e => {
+        showTweet(post.id);
+    });
 
     const likeDiv = clone.querySelector('.tweet-like');
     likeDiv.addEventListener('click', e => {
@@ -102,9 +113,5 @@ function newPost(user, text) {
         }
     });
 
-    const d = new Date();
-
-    const post = {id: tweetIDCount, username: user, time: d.getTime(), 
-        context: text, comments: [], retweets: [], likes: []};
-    tweets.push(post);
+    tweetIDCount++;
 }
