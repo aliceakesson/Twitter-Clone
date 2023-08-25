@@ -297,7 +297,7 @@ h1 {
 
 
 
-/*#region Tweet */
+/*#region Full Tweet */
 
 #tweet-header {
     display: none;
@@ -315,6 +315,24 @@ h1 {
     font-size: 22px;
     margin-top: 5px;
     margin-left: 20px;
+}
+
+#full-tweet {
+    padding: 15px 10px;
+    box-sizing: border-box;
+}
+
+#full-tweet-info {
+    display: flex;
+} 
+
+#full-tweet-profile {
+    height: 45px;
+    width: 45px;
+}
+
+#full-tweet-info-right {
+    
 }
 
 /*#endregion */
