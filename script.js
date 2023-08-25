@@ -38,6 +38,10 @@ newPost(currentUser, 'This is a test post.');
 newPost(currentUser, 'Anotha one');
 newPost(currentUser, 'hi');
 
+function showTweet() {
+    console.log('click lcick');
+}
+
 function newPost(user, text) {
     var clone = tweetReplica.cloneNode(true);
 
@@ -49,8 +53,12 @@ function newPost(user, text) {
     clone.querySelector('.tweet-username').innerHTML = "@" + user;
     clone.querySelector('.tweet-post').innerHTML = text;
 
+    clone.addEventListener('click', showTweet);
+
     const likeDiv = clone.querySelector('.tweet-like');
     likeDiv.addEventListener('click', e => {
+        e.stopPropagation();
+
         const heart = likeDiv.querySelector('i');
         if(heart.classList.contains('fa-regular')) { // like tweet
             heart.classList.remove('fa-regular');
