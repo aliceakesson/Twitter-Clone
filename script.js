@@ -73,7 +73,7 @@ function showTweet(id) {
     const tweet = tweets[id];
 
     document.getElementById('full-tweet-name').innerHTML = users[tweet.username].name;
-    document.getElementById('full-tweet-username').innerHTML = tweet.username;
+    document.getElementById('full-tweet-username').innerHTML = "@" + tweet.username;
     document.getElementById('full-tweet-profile').src = users[tweet.username].profile;
 
     document.querySelector('#full-tweet-content p').innerHTML = tweet.content;
@@ -201,8 +201,12 @@ function newPost(user, text) {
                     break; 
                 }
             }
-
         }
+
+        const commentDiv = clone.querySelector('.tweet-comment');
+        commentDiv.addEventListener('click', e => {
+            showTweet(post.id);
+        });
     });
 
     tweetIDCount++;

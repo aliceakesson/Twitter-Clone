@@ -9,24 +9,59 @@
     <title>Home / Twitter</title>
 </head>
 <body>
+    <div id="tint-overlay"></div>
+
     <main>
         <section id="nav">
             <div id="items">
                 <div>
-                    <a href="home.html">
+                    <a href="index.html">
                         <i class="fa fa-solid fa-twitter" aria-hidden="true"></i>  
                     </a>
                 </div>
                 <div>
-                    <a href="home.html">
+                    <a href="index.html">
                         <i class="fa-solid fa-house"></i>
                     </a>
                 </div>
             </div>
             <div id="profile">
-                <a href="home.html"><img src="profile.png" class="profile-img"></a>
+                <a href="index.html"><img src="profile.png" class="profile-img"></a>
             </div>
         </section>
+
+        <div id="comment-popup">
+            <div id="comment-popup-top">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div id="comment-popup-tweet">
+                <div id="comment-popup-tweet-left">
+                    <img src="profile.png" id="comment-popup-tweet-profile" class="profile-img">
+                    <div id="comment-popup-line"></div>
+                </div>
+                <div id="comment-popup-tweet-right">
+                    <div id="comment-popup-tweet-info">
+                        <p id="comment-popup-name">[name]</p>
+                        <p id="comment-popup-username">[username]</p>
+                        <div class="tweet-time-divider" id="comment-popup-divider">.</div>
+                        <p id="comment-popup-time">[time]</p>
+                    </div>
+                    <div id="comment-popup-content">
+                        <p>[content]</p>
+                    </div>
+                    <div id="comment-popup-replying-to">
+                        <p>Replying to </p><a>[user]</a>
+                    </div>
+                </div>
+            </div>
+            <div id="comment-popup-own">
+                <img src="profile.png" id="comment-popup-profile" class="profile-img">
+                <textarea placeholder="Post your reply!"></textarea>
+            </div>
+            <div id="comment-popup-bottom">
+                <button>Reply</button>
+            </div>
+        </div>
 
         <section id="main-section">
             <div id="main-header">
@@ -45,21 +80,21 @@
                 <div id="full-tweet-info">
                     <img src="profile.png" id="full-tweet-profile" class="profile-img">
                     <div id="full-tweet-info-right">
-                        <p id="full-tweet-name">lallice</p>
-                        <p id="full-tweet-username">@alice</p>
+                        <p id="full-tweet-name">[name]</p>
+                        <p id="full-tweet-username">[username]</p>
                         <i class="fa-solid fa-ellipsis" id="full-tweet-more"></i>
                     </div>
                 </div>
                     <div id="full-tweet-content">
-                        <p>yolo swag</p>
+                        <p>[content]</p>
                     </div>
                     <div id="full-tweet-date-time">
-                        <p id="full-tweet-time">9:06 PM</p>
+                        <p id="full-tweet-time">0:00 PM</p>
                         <div class="tweet-time-divider">.</div>
-                        <p id="full-tweet-date">Aug 25, 2023</p>
+                        <p id="full-tweet-date">Jan 1, 2000</p>
                     </div>
                     <div id="full-tweet-statistic">
-                    <p id="full-tweet-likes">4 Likes</p>
+                    <p id="full-tweet-likes"></p>
                     </div>
                     <div id="full-tweet-actions">
                         <i class="fa-regular fa-comment" id="full-tweet-comment-icon"></i>
