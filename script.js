@@ -58,9 +58,9 @@ function run() {
     }
 }
 
-newPost(currentUser, 'This is a test post.');
-newPost(currentUser, 'Anotha one');
-newPost(currentUser, 'hi');
+newPost(currentUser, 'This is a test post.', 1);
+newPost(currentUser, 'Anotha one', 1);
+newPost(currentUser, 'hi', 1);
 
 function showTweet(id) {
     document.getElementById('main-header').style.display = 'none';
@@ -136,10 +136,13 @@ document.querySelector('#tweet-header i').addEventListener('click', e => { // go
     } else p.style.display = 'block';
 });
 
-function newPost(user, text) {
+// Type: 1 for tweet, 2 for comment
+function newPost(user, text, type) {
     var clone = tweetReplica.cloneNode(true);
 
+    
     document.getElementById('tweets').prepend(clone);
+
     clone.style.display = 'flex';
 
     clone.querySelector('.tweet-left img').src = users[user].profile;
@@ -202,12 +205,52 @@ function newPost(user, text) {
                 }
             }
         }
+    });
 
-        const commentDiv = clone.querySelector('.tweet-comment');
-        commentDiv.addEventListener('click', e => {
-            showTweet(post.id);
-        });
+    const commentDiv = clone.querySelector('.tweet-comment');
+    commentDiv.addEventListener('click', e => {
+        e.stopPropagation();
+        comment(post.id);
     });
 
     tweetIDCount++;
 }
+
+function comment(id) {
+    currentShowingTweet = id;
+
+    document.getElementById('comment-popup').style.display = 'block';
+    document.getElementById('tint-overlay').style.display = 'block';
+
+    const user = tweets[id].username; 
+
+    document.getElementById('comment-popup-tweet-profile').src = users[user].profile;
+    document.getElementById('comment-popup-name').innerHTML = users[user].name;
+    document.getElementById('comment-popup-username').innerHTML = '@' + user;
+
+    document.getElementById('comment-popup-time').innerHTML = "Now"; // TODO
+
+    document.getElementById('comment-popup-content').innerHTML = tweets[id].content;
+    document.querySelector('#comment-popup-replying-to a').innerHTML = '@' + tweets[id].username;
+
+    document.getElementById('comment-popup-profile').src = users[currentUser].profile;
+}
+
+document.querySelector('#comment-popup-top i').addEventListener('click', e => {
+    document.getElementById('comment-popup').style.display = 'none';
+    document.getElementById('tint-overlay').style.display = 'none';
+});
+
+document.querySelector('#comment-popup-bottom button').addEventListener('click', e => {
+    const text = document.querySelector('#comment-popup textarea').value;
+    
+    if(text.length > 0) {
+        document.getElementById('comment-popup').style.display = 'none';
+        document.getElementById('tint-overlay').style.display = 'none';
+
+        const comment = {content:text, user: currentUser};
+        tweets[currentShowingTweet].comments.push(comment);
+
+        document.querySelector('#comment-popup textarea').value = "";
+    }
+});
