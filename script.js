@@ -43,7 +43,16 @@ function showTweet(id) {
     document.getElementById('tweet-header').style.display = 'flex';
     document.getElementById('create-post').style.display = 'none';
     document.getElementById('tweets').style.display = 'none';
+    document.getElementById('full-tweet').style.display = 'block';
 }
+
+document.querySelector('#tweet-header i').addEventListener('click', e => {
+    document.getElementById('main-header').style.display = 'block';
+    document.getElementById('tweet-header').style.display = 'none';
+    document.getElementById('create-post').style.display = 'block';
+    document.getElementById('tweets').style.display = 'block';
+    document.getElementById('full-tweet').style.display = 'none';
+});
 
 function newPost(user, text) {
     var clone = tweetReplica.cloneNode(true);

@@ -320,6 +320,8 @@ h1 {
 #full-tweet {
     padding: 15px 10px;
     box-sizing: border-box;
+    font-size: 18px;
+    display: none;
 }
 
 #full-tweet-info {
@@ -329,10 +331,65 @@ h1 {
 #full-tweet-profile {
     height: 45px;
     width: 45px;
+    margin-right: 15px;
 }
 
 #full-tweet-info-right {
-    
+    display: flex;
+    width: 100%;
+    font-weight:lighter;
+    color: var(--grey);
+    position: relative;
+}
+
+#full-tweet-name {
+    position: absolute;
+    left: 0;
+    top: -17.5px;
+    color: var(--light-grey);
+    font-weight: bolder;
+}
+
+#full-tweet-username {
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+}
+
+#full-tweet-more {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#full-tweet-date-time {
+    color: var(--grey);
+    display: flex;
+    margin-top: -10px;
+}
+
+#full-tweet-date-time .tweet-time-divider {
+    margin: 12.5px 7.5px 0 7.5px;
+}
+
+#full-tweet-statistic {
+    border-top: 1px solid var(--grey);
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+}
+
+#full-tweet-actions {
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--grey);
+    padding: 15px 30px 0 30px;
+    box-sizing: border-box;
+}
+
+#full-tweet-actions i {
+    flex: 0;
 }
 
 /*#endregion */
