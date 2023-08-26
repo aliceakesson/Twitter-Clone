@@ -390,6 +390,8 @@ h1 {
 
 #full-tweet-actions i {
     flex: 0;
+    cursor: pointer;
+    color: var(--grey);
 }
 
 /*#endregion */
