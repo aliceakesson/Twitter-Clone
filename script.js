@@ -109,6 +109,33 @@ function showTweet(id) {
         document.getElementById('full-tweet-statistic').style.display = 'none';
     else document.getElementById('full-tweet-statistic').style.display = 'flex';
 
+    // comments ----------------------------------------
+
+    const commentDiv = document.getElementById('full-tweet-comments');
+    while(commentDiv.firstChild) {
+        commentDiv.removeChild(commentDiv.firstChild);
+    }
+
+    if(tweet.comments.length > 0) {
+        tweet.comments.forEach(index => {
+            const comment = tweets[index];
+            
+            var clone = tweetReplica.cloneNode(true);
+            const parent = document.getElementById('full-tweet-comments');
+
+            parent.style.display = 'block';
+            parent.prepend(clone);
+            clone.style.display = 'flex';
+
+            const div = clone.querySelector('.tweet-bottom-info').style.height = '20px';
+
+            clone.querySelector('.tweet-left img').src = users[comment.username].profile;
+            clone.querySelector('.tweet-name').innerHTML = users[comment.username].name;
+            clone.querySelector('.tweet-username').innerHTML = "@" + comment.username;
+            clone.querySelector('.tweet-post').innerHTML = comment.content;
+            clone.querySelector('.tweet-post').style.fontSize = '16px';
+        });
+    }
 }
 
 document.querySelector('#tweet-header i').addEventListener('click', e => { // go back to Home 
@@ -134,6 +161,8 @@ document.querySelector('#tweet-header i').addEventListener('click', e => { // go
     if(tweets[currentShowingTweet].likes.length == 0) {
         p.style.display = 'none';
     } else p.style.display = 'block';
+
+    document.getElementById('full-tweet-comments').style.display = 'none';
 });
 
 // Type: 1 for tweet, 2 for comment
@@ -248,8 +277,16 @@ document.querySelector('#comment-popup-bottom button').addEventListener('click',
         document.getElementById('comment-popup').style.display = 'none';
         document.getElementById('tint-overlay').style.display = 'none';
 
-        const comment = {content:text, user: currentUser};
+        const comment = tweetIDCount;
         tweets[currentShowingTweet].comments.push(comment);
+
+        const d = new Date();
+
+        const post = {id: tweetIDCount, username: currentUser, time: d.getTime(), 
+            content: text, comments: [], retweets: [], likes: []};
+        tweets.push(post);
+
+        tweetIDCount++;
 
         document.querySelector('#comment-popup textarea').value = "";
     }
