@@ -4,14 +4,16 @@ var currentShowingElement = null;
 
 const textareaPost = document.getElementById('textareaPost');
 
-var currentUser = 'alice';
+var currentUser = 'dr';
 
 var users = {
-    'alice': {name: 'lallice', profile: 'profile.png'}
+    'alice': {name: 'lallice', profile: 'profile.png'},
+    'dr': {name: 'doof', profile: 'profile2.png'}
 };
-var tweets = [
+var tweets = [];
 
-];
+document.querySelector('#create-post img').src = users[currentUser].profile;
+document.querySelector('#profile img').src = users[currentUser].profile;
 
 const tweetReplica = document.getElementById('tweet-replica');
 
