@@ -118,7 +118,7 @@ function showTweet(id) {
 
     if(tweet.comments.length > 0) {
         tweet.comments.forEach(index => {
-            const comment = tweets[index];
+            const obj = tweets[index];
             
             var clone = tweetReplica.cloneNode(true);
             const parent = document.getElementById('full-tweet-comments');
@@ -129,11 +129,68 @@ function showTweet(id) {
 
             const div = clone.querySelector('.tweet-bottom-info').style.height = '20px';
 
-            clone.querySelector('.tweet-left img').src = users[comment.username].profile;
-            clone.querySelector('.tweet-name').innerHTML = users[comment.username].name;
-            clone.querySelector('.tweet-username').innerHTML = "@" + comment.username;
-            clone.querySelector('.tweet-post').innerHTML = comment.content;
+            clone.querySelector('.tweet-left img').src = users[obj.username].profile;
+            clone.querySelector('.tweet-name').innerHTML = users[obj.username].name;
+            clone.querySelector('.tweet-username').innerHTML = "@" + obj.username;
+            clone.querySelector('.tweet-post').innerHTML = obj.content;
             clone.querySelector('.tweet-post').style.fontSize = '16px';
+
+            clone.addEventListener('click', e => {
+                showTweet(index);
+                currentShowingElement = clone; 
+            });
+
+            const likeDiv = clone.querySelector('.tweet-like');
+            likeDiv.addEventListener('click', e => {
+                e.stopPropagation();
+
+                const heart = likeDiv.querySelector('i');
+                if(heart.classList.contains('fa-regular')) { // like tweet
+                    heart.classList.remove('fa-regular');
+                    heart.classList.add('fa-solid');
+                    likeDiv.style.color = pink; 
+
+                    const likeP = likeDiv.querySelector('p');
+                    const amountOfLikes = parseInt(likeP.innerHTML);
+                    if(amountOfLikes == 0) 
+                        likeP.style.visibility = 'visible';
+
+                    likeP.innerHTML = amountOfLikes + 1;
+                    for(var i = 0; i < tweets.length; i++) {
+                        if(tweets[i].id == post.id) {
+                            tweets[i].likes.push(currentUser);
+                            console.log(tweets[i]);
+                            break; 
+                        }
+                    }
+
+                } else { // dislike tweet 
+                    heart.classList.remove('fa-solid');
+                    heart.classList.add('fa-regular');
+                    likeDiv.style.color = grey;
+
+                    const likeP = likeDiv.querySelector('p');
+                    const amountOfLikes = parseInt(likeP.innerHTML);
+                    if(amountOfLikes == 1) 
+                        likeP.style.visibility = 'hidden';
+
+                    likeP.innerHTML = amountOfLikes - 1;
+                    for(var i = 0; i < tweets.length; i++) {
+                        if(tweets[i].id == post.id) {
+                            const index = tweets[i].likes.indexOf(currentUser);
+                            tweets[i].likes.splice(index, 1);
+                            console.log(tweets[i]);
+                            break; 
+                        }
+                    }
+                }
+            });
+
+            const commentDiv = clone.querySelector('.tweet-comment');
+            commentDiv.addEventListener('click', e => {
+                e.stopPropagation();
+                comment(index);
+            });
         });
     }
 }
