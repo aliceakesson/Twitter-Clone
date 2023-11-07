@@ -11,7 +11,7 @@ var users = {
     'dr': {name: 'doof', profile: 'profile2.png'}
 };
 var tweets = [];
-
+// hejhej tjo
 document.querySelector('#create-post img').src = users[currentUser].profile;
 document.querySelector('#profile img').src = users[currentUser].profile;
 
